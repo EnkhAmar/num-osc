@@ -15,3 +15,5 @@ Shell эсвэл CMD команд болгон нь нэг програм гэд
 Програмын эх код болон үр дүнг харуулсан screenshot хийж зөвхөн PDF файлаар сиси системд оруулаарай.
 
 https://youtu.be/ovjVam0E1SM
+
+https://youtube.com/playlist?list=PLfVsf4Bjg79BOmLYBRTwqCIkGPiOWb7xj
