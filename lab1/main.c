@@ -107,7 +107,7 @@ void directoryFunc() {
   struct dirent *dir;
   if (d) {
     while ((dir = readdir(d)) != NULL) {
-      if (dir->d_type == DT_REG)
+      // if (dir->d_type == DT_REG)
         printf("%s\t", dir->d_name);
     }
     printf("\n");
