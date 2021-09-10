@@ -17,3 +17,5 @@ Shell эсвэл CMD команд болгон нь нэг програм гэд
 https://youtu.be/ovjVam0E1SM
 
 https://youtube.com/playlist?list=PLfVsf4Bjg79BOmLYBRTwqCIkGPiOWb7xj
+
+https://www.guru99.com/c-file-input-output.html
