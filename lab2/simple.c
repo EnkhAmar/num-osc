@@ -2,17 +2,18 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 
-static int __init rickroll_init(void) {
+
+static int __init simple_init(void) {
     printk(KERN_INFO "Rickroll module has been loaded\n");
     return 0;
 }
 
-static void __exit rickroll_exit(void) {
+static void __exit simple_exit(void) {
     printk(KERN_INFO "Rickroll module has been unloaded\n");
 }
 
-module_init(rickroll_init);
-module_exit(rickroll_exit);
+module_init(simple_init);
+module_exit(simple_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Simple Module");
