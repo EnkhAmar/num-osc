@@ -1,11 +1,3 @@
-#include <linux/init.h>
-#include <linux/module.h>
-#include <linux/kernel.h>
-
-#define DRIVER_LIC "GPL"
-#define DRIVER_DESCRIPTION "Simple Module"
-#define DRIVER_AUTHOR "Enkh-Amar.G"
-
 /*
  * "make" to compile
  * "sudo insmod simple.ko" to load kernel module
@@ -15,6 +7,15 @@
  * "sudo dmesg -c" to clear the kernel log
  * "lsmod | grep simple" to check the simple module is loaded
  **/
+
+#include <linux/init.h>
+#include <linux/module.h>
+#include <linux/kernel.h>
+
+#define DRIVER_LIC "GPL"
+#define DRIVER_DESCRIPTION "Simple Module"
+#define DRIVER_AUTHOR "Enkh-Amar.G"
+
 
 static int __init simple_init(void) {
     printk(KERN_INFO "Simple module has been loaded\n");
