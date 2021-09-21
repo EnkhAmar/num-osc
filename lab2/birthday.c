@@ -47,7 +47,7 @@ static int __init birthday_init(void) {
         // Allocate from kernel memory
         person = kmalloc(sizeof(*person), GFP_KERNEL);
         // Assing value to the struct
-        person->day = 5 + i;
+        person->day = 23 + i;
         person->month = 8 + i;
         person->year = 2000 + i;
         // Initialize the list member in struct birthday.
@@ -59,10 +59,10 @@ static int __init birthday_init(void) {
     // Traverse through kernel linked list and print
     birthday *ptr;
     list_for_each_entry(ptr, &birthday_list, list) {
-        printk(KERN_INFO "Birthday: Month %d Day %d Year %d\n",
+        printk(KERN_INFO "Birthday: %d/%d/%d\n",
+                ptr->year,
                 ptr->month,
-                ptr->day,
-                ptr->year);
+                ptr->day);
     }
 
     return 0;
@@ -73,12 +73,12 @@ static void birthday_exit(void) {
     // Traverse through kernel linked list and free the memory
     birthday *ptr, *next;
     list_for_each_entry_safe(ptr, next, &birthday_list, list) {
-        printk(KERN_INFO "Deleting Birthday: Month %d Day %d Year %d\n",
+        printk(KERN_INFO "Deleting Birthday: %d/%d/%d\n",
+                ptr->year,
                 ptr->month,
-                ptr->day,
-                ptr->year);
+                ptr->day);
         // Delete list
-        list_del($pre->list);
+        list_del(&ptr->list);
         // Free list memory
         kfree(ptr);
     }
