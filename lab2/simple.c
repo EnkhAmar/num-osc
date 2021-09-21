@@ -13,6 +13,7 @@
  * "make clean" to clean the compiled products
  * "sudo dmesg" to show the kernel log
  * "sudo dmesg -c" to clear the kernel log
+ * "lsmod | grep simple" to check the simple module is loaded
  **/
 
 static int __init simple_init(void) {
