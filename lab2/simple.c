@@ -4,12 +4,12 @@
 
 
 static int __init simple_init(void) {
-    printk(KERN_INFO "Rickroll module has been loaded\n");
+    printk(KERN_INFO "Simple module has been loaded\n");
     return 0;
 }
 
 static void __exit simple_exit(void) {
-    printk(KERN_INFO "Rickroll module has been unloaded\n");
+    printk(KERN_INFO "Simple module has been unloaded\n");
 }
 
 module_init(simple_init);
