@@ -47,9 +47,9 @@ static int __init birthday_init(void) {
         // Allocate from kernel memory
         person = kmalloc(sizeof(*person), GFP_KERNEL);
         // Assing value to the struct
-        person->day = 2 + i;
+        person->day = 5 + i;
         person->month = 8 + i;
-        person->year = 1995 + i;
+        person->year = 2000 + i;
         // Initialize the list member in struct birthday.
         INIT_LIST_HEAD(&person->list);
         // Add this struct to the tail of the list.
