@@ -1,14 +1,19 @@
 #include <linux/init.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-/* This function is called when the module is loaded. */ int simple
-init(void) {
-printk(KERN INFO "Loading Module\n"); return 0;
+#include <linux/module.h>
+#include <linux/kernel.h>
+
+static int __init rickroll_init(void) {
+    printk(KERN_INFO "Rickroll module has been loaded\n");
+    return 0;
 }
-/* This function is called when the module is removed. */ void simple
-exit(void) { 
-printk(KERN INFO "Removing Module\n"); }
-/* Macros for registering module entry and exit points. */ module init(simple
-init); module exit(simple exit);
-MODULE LICENSE("GPL"); MODULE DESCRIPTION("Simple
-Module"); MODULE AUTHOR("SGG");
+
+static void __exit rickroll_exit(void) {
+    printk(KERN_INFO "Rickroll module has been unloaded\n");
+}
+
+module_init(rickroll_init);
+module_exit(rickroll_exit);
+
+MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("Simple Module");
+MODULE_AUTHOR("SGG");
