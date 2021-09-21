@@ -21,12 +21,12 @@
 
 
 // Birthday struct 
-struct birthday {
+typedef struct _birthday {
     int day;
     int month;
     int year;
     struct list_head list;
-};
+} birthday;
 
 // Declare and initialize the head of the linked list
 static LIST_HEAD(birthday_list);
@@ -41,7 +41,7 @@ static int __init birthday_init(void) {
     printk(KERN_INFO "Loading Birthday Module\n");
 
     // Allocates 5 birthdays from kernel
-    struct birthday *person;
+    {birthday *person;};
     int i = 0;
     for (i = 0; i < 5; i++) {
         // Allocate from kernel memory
@@ -57,7 +57,7 @@ static int __init birthday_init(void) {
     }
 
     // Traverse through kernel linked list and print
-    struct birthday *ptr;
+    {birthday *ptr;};
     list_for_each_entry(ptr, &birthday_list, list) {
         printk(KERN_INFO "Birthday: %d/%d/%d\n",
                 ptr->year,
@@ -71,7 +71,7 @@ static int __init birthday_init(void) {
 static void birthday_exit(void) {
     printk(KERN_INFO "Unloading Birthday Module\n");
     // Traverse through kernel linked list and free the memory
-    struct birthday *ptr, *next;
+    {birthday *ptr, *next;};
     list_for_each_entry_safe(ptr, next, &birthday_list, list) {
         printk(KERN_INFO "Deleting Birthday: %d/%d/%d\n",
                 ptr->year,
