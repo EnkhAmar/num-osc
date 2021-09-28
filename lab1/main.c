@@ -3,6 +3,8 @@
 #include <stdbool.h>
 #include <string.h>
 #include <dirent.h>
+#include <sys/types.h>
+#include <unistd.h>
 #define MAX_LIMIT 100
 
 
@@ -68,6 +70,16 @@ int main() {
        */
       for (int i=1; i<word_cnt; i++)
         delFunc(token[i]);
+    }
+    else if ((strcmp(token[0], "run") == 0) && word_cnt > 1) {
+      /*
+       * Process-iin neriig garaas ogch ajiluulna. Ajiluulah command ni compile hiigdsen baih yostoi
+       * >> run say_hello
+       * Hello
+       * >> run show_time
+       * 2021-09-28 00:02
+       */
+
     }
     else if ((strcmp(token[0], "exit") == 0 || strcmp(token[0], "quit") == 0) && word_cnt == 1) {
       /*
@@ -151,3 +163,4 @@ void delFunc(char *filename) {
     printf("Error: Could not delete the file\n");
   }
 }
+
