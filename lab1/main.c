@@ -15,6 +15,7 @@ void inputFunc(char *filename, char *txt);
 void renameFunc(char *oldname, char *newname);
 void delFunc(char *filename);
 int runProcess(char *command);
+char *concatString(const char *s1, const char *s2);
 
 int main() {
   bool is_running = true;
@@ -80,7 +81,7 @@ int main() {
        * >> run show_time
        * 2021-09-28 00:02
        */
-
+      runProcess(token[1]);
     }
     else if ((strcmp(token[0], "exit") == 0 || strcmp(token[0], "quit") == 0) && word_cnt == 1) {
       /*
@@ -175,7 +176,10 @@ int runProcess (char *command) {
       /* This is the child process.  Execute the shell command. */
       // printf("PID of %s = %d\n", command, pid);
       char *args[] = {};
-      execv("./say_hello", args);
+      char currentDir[] = "./";
+      char *filepath = concatString(currentDir, command);
+      execv(filepath, args);
+      free(filepath);
     }
   else if (pid < 0)
     /* The fork failed.  Report failure.  */
@@ -185,4 +189,11 @@ int runProcess (char *command) {
     if (waitpid (pid, &status, 0) != pid)
       status = -1;
   return status;
+}
+
+char *concatString(const char *s1, const char *s2) {
+  char *result = malloc(strlen(s1) + strlen(s2) + 1); // +1 for the null-terminator
+  strcpy(result, s1);
+  strcat(result, s2);
+  return result;
 }

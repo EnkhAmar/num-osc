@@ -1,0 +1,1 @@
+gcc say_hello.c -o say_hello && gcc show_time.c -o show_time && gcc main.c && ./a.out
