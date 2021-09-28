@@ -166,15 +166,16 @@ void delFunc(char *filename) {
 }
 
 int runProcess (char *command) {
-  int status;
+  int status = EXIT_SUCCESS;
   pid_t pid;
 
   pid = fork ();
   if (pid == 0)
     {
       /* This is the child process.  Execute the shell command. */
-      execl (SHELL, SHELL, "-c", command, NULL);
-      _exit (EXIT_FAILURE);
+      // printf("PID of %s = %d\n", command, pid);
+      char *args[] = {};
+      execv("./say_hello", args);
     }
   else if (pid < 0)
     /* The fork failed.  Report failure.  */
