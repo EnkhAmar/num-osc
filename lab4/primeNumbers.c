@@ -37,7 +37,7 @@ int main()
     pthread_t threads[NUM_THREADS];
     int rc, i;
     for (i = 0; i < NUM_THREADS; i++) {
-        printf("main() : creating thread, %d\n", tid);
+        printf("main() : creating thread, %d\n", i);
         rc = pthread_create(&threads[i], NULL, checkPrime, (void *)i);
         if (rc) {
             printf("Error: unable to create thread, %d\n", rc);
