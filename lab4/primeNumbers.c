@@ -4,47 +4,45 @@
 #include <unistd.h>
 #include <pthread.h>
 
-#define NUM_THREADS 5
-  
-// Let us create a global variable to change it in threads
-int g = 0;
-  
-// The function to be executed by all threads
-void *myThreadFun(void *vargp)
-{
-    // Store the value argument passed to this thread
-    int *myid = (int *)vargp;
-  
-    // Let us create a static variable to observe its changes
-    static int s = 0;
-  
-    // Change static and global variables
-    ++s; ++g;
-  
-    // Print the argument, static and global variables
-    printf("Thread ID: %d, Static: %d, Global: %d\n", *myid, ++s, ++g);
-}
+#define NUM_THREADS 100
 
-void *checkPrime(void *threadid) {
-    long tid;
-    tid = (long)threadid;
-    printf("Hello world! Thread Id, %d", tid);
+
+void *checkPrime(void *vargp) {
+    int *num = (int *)vargp;
+    int i, flag = 0;
+
+    for (i = 2; i <= (*num) / 2; ++i) {
+        if ((*num) % i == 0) {
+            flag = 1;
+            break;
+        }
+    }
+
+    if ((*num) == 1) {
+        printf("Neither prime nor composite: 1\n");
+    } 
+    else {
+        if (flag == 0)
+        printf("PRIME:     %d\n", *num);
+        else
+        printf("NOT PRIME: %d\n", *num);
+    }   
     pthread_exit(NULL);
 }
-  
+   
 int main()
 {
     pthread_t threads[NUM_THREADS];
-    int rc, i;
-    for (i = 0; i < NUM_THREADS; i++) {
-        printf("main() : creating thread, %d\n", i);
-        rc = pthread_create(&threads[i], NULL, checkPrime, (void *)i);
+    int rc;
+    for (int i = 1; i <= 100; i++) {
+        rc = pthread_create(&threads[i-1], NULL, checkPrime, (void *)&i);
+        pthread_join(threads[i-1], NULL);
         if (rc) {
             printf("Error: unable to create thread, %d\n", rc);
             exit(-1);
         }
     }
-  
+
     pthread_exit(NULL);
     return 0;
 }
