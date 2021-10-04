@@ -1,4 +1,4 @@
-
+// To compile: $ gcc primeNumber.c -lpthread
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
