@@ -25,7 +25,7 @@ void *myThreadFun(void *vargp)
     printf("Thread ID: %d, Static: %d, Global: %d\n", *myid, ++s, ++g);
 }
 
-int checkPrime(void *threadid) {
+void *checkPrime(void *threadid) {
     long tid;
     tid = (long)threadid;
     printf("Hello world! Thread Id, %d", tid);
