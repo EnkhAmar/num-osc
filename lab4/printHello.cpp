@@ -1,4 +1,4 @@
-// To complile -> g++ printHello.c -lpthread
+// To complile -> g++ printHello.cpp -lpthread
 
 #include <iostream>
 #include <cstdlib>
