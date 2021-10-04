@@ -1,3 +1,5 @@
+// To complile -> g++ printHello.c -lpthread
+
 #include <iostream>
 #include <cstdlib>
 #include <pthread.h>
