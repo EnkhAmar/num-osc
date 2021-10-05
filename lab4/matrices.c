@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <pthread.h>
 
 // function to get matrix elements entered by the user
 void getMatrixElements(int matrix[][10], int row, int column) {
@@ -7,10 +10,14 @@ void getMatrixElements(int matrix[][10], int row, int column) {
 
    for (int i = 0; i < row; ++i) {
       for (int j = 0; j < column; ++j) {
-         printf("Enter a%d%d: ", i + 1, j + 1);
+         printf("Enter a[%d][%d]: ", i + 1, j + 1);
          scanf("%d", &matrix[i][j]);
       }
    }
+}
+
+void *calculateProduct(void *vargp) {
+
 }
 
 // function to multiply two matrices
@@ -18,6 +25,7 @@ void multiplyMatrices(int first[][10],
                       int second[][10],
                       int result[][10],
                       int r1, int c1, int r2, int c2) {
+   pthread_t threads[r1 * c2];
 
    // Initializing elements of matrix mult to 0.
    for (int i = 0; i < r1; ++i) {
@@ -30,7 +38,8 @@ void multiplyMatrices(int first[][10],
    for (int i = 0; i < r1; ++i) {
       for (int j = 0; j < c2; ++j) {
          for (int k = 0; k < c1; ++k) {
-            result[i][j] += first[i][k] * second[k][j];
+            // result[i][j] += first[i][k] * second[k][j];
+            result[i][j] += calculateProduct();
          }
       }
    }
