@@ -1,5 +1,4 @@
-// C Program to multiply two matrix using pthreads without
-// use of global variables
+// gcc matricesProduct.c -pthread
 #include<stdio.h>
 #include<pthread.h>
 #include<unistd.h>
@@ -23,11 +22,10 @@ void *mult(void* arg)
 	int *p = (int*)malloc(sizeof(int));
 		*p = k;
 	
-//Used to terminate a thread and the return value is passed as a pointer
+	//Used to terminate a thread and the return value is passed as a pointer
 	pthread_exit(p);
 }
 
-//Driver code
 int main()
 {
 	int first[10][10], second[10][10], result[10][10], r1, c1, r2, c2;
@@ -63,8 +61,7 @@ int main()
 	int count = 0;
 	int* data = NULL;
 	for (i = 0; i < r1; i++)
-		for (j = 0; j < c2; j++)
-			{
+		for (j = 0; j < c2; j++) {
 				
 			//storing row and column elements in data
 			data = (int *)malloc((20)*sizeof(int));
@@ -76,28 +73,22 @@ int main()
 			for (k = 0; k < r2; k++)
 				data[k+c1+1] = second[k][j];
 			
-			//creating threads
-				pthread_create(&threads[count++], NULL,
-							mult, (void*)(data));
-				
-					}
+			pthread_create(&threads[count++], NULL, mult, (void*)(data));	
+		}
 	
-	printf("RESULTANT MATRIX IS :- \n");
-	for (i = 0; i < max; i++)
-	{
-	void *k;
+	printf("RESULT: \n");
+	for (i = 0; i < max; i++) {
+		void *k;
 	
-	//Joining all threads and collecting return value
-	pthread_join(threads[i], &k);
+		//Joining all threads and collecting return value
+		pthread_join(threads[i], &k);
 			
-		
 		int *p = (int *)k;
-	printf("%d ",*p);
-	if ((i + 1) % c2 == 0)
-		printf("\n");
+		printf("%d ",*p);
+		if ((i + 1) % c2 == 0)
+			printf("\n");
 	}
 
-	
 	free(threads);
 	free(data);
 return 0;
@@ -110,15 +101,5 @@ void getMatrixElements(int matrix[][10], int row, int column) {
 		for (int j=0; j < column; ++j) {
 			printf("Enter matrix[%d]{%d]: ", i+1, j+1);
 			scanf("%d", &matrix[i][j]);
-		}
-}
-
-void display(int result[][10], int row, int column) {
-	printf("\nOutput Matrix:\n");
-	for (int i=0; i<row; ++i)
-		for(int j=0; j<column; ++j) {
-			printf("%d ", result[i][j]);
-			if (j == column - 1)
-				printf("\n");
 		}
 }
