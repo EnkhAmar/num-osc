@@ -4,11 +4,10 @@
 #include<unistd.h>
 #include<stdlib.h>
 
-
 void getMatrixElements(int matrix[][10], int row, int column);
 void display(int result[][10], int row, int column);
 
-//Each thread computes single element in the resultant matrix
+// Thread bur ene function-g heregjuulne
 void *mult(void* arg)
 {
 	int *data = (int *)arg;
@@ -21,40 +20,37 @@ void *mult(void* arg)
 	int *p = (int*)malloc(sizeof(int));
 		*p = k;
 	
-	//Used to terminate a thread and the return value is passed as a pointer
+	// threading haaj, pointer-eer urjveriin utgiig butsaana
 	pthread_exit(p);
 }
 
 int main()
 {
 	int first[10][10], second[10][10], result[10][10], r1, c1, r2, c2;
-	printf("Enter rows and column for the first matrix: ");
+	printf("Ehnii matrix-iin mor bagana too oruul: ");
 	scanf("%d %d", &r1, &c1);
-	printf("Enter rows and column for the second matrix: ");
+	printf("Hoyor dahi matrix-iin mor bagan too oruul: ");
 	scanf("%d %d", &r2, &c2);
 
-	// Taking input until
-	// 1st matrix columns is not equal to 2nd matrix row
+    // ehnii matrix-iin baganiin too, hoyor dahi matrix-iin
+    // moriin too-toi tentseh yostoi !!!
 	while (c1 != r2) {
-		printf("Error! Enter rows and columns again.\n");
-		printf("Enter rows and columns for the first matrix: ");
+		printf("Error! Mor baganiin toog dahiad oruulna uu.\n");
+		printf("Ehnii matrix-iin mor bagana too oruul: ");
 		scanf("%d%d", &r1, &c1);
-		printf("Enter rows and columns for the second matrix: ");
+		printf("Hoyor dahi matrix-iin mor bagan too oruul: ");
 		scanf("%d%d", &r2, &c2);
 	}
 
-	// get elements of the first matrix
 	getMatrixElements(first, r1, c1);
-
-	// get elements of the second matrix
 	getMatrixElements(second, r2, c2);
 	
 	int i, j, k;
 	int max = r1*c2;
 	
 	
-	//declaring array of threads of size r1*c2	
-	pthread_t *threads;
+	// threadiin r1*c2 hemjeetei array zarlana	
+    pthread_t *threads;
 	threads = (pthread_t*)malloc(max*sizeof(pthread_t));
 	
 	int count = 0;
@@ -62,7 +58,7 @@ int main()
 	for (i = 0; i < r1; i++)
 		for (j = 0; j < c2; j++) {
 				
-			//storing row and column elements in data
+			// data dotor mor baganiin elementiig huulna
 			data = (int *)malloc((20)*sizeof(int));
 			data[0] = c1;
 	
@@ -79,12 +75,12 @@ int main()
 	for (i = 0; i < max; i++) {
 		void *k;
 	
-		//Joining all threads and collecting return value
+        // Threaduudee join hiij, butsaah utgiig tsugluulna
 		pthread_join(threads[i], &k);
 			
 		int *p = (int *)k;
 		printf("%d ",*p);
-		free(k);
+        free(k);
 		if ((i + 1) % c2 == 0)
 			printf("\n");
 	}
@@ -95,11 +91,11 @@ return 0;
 }
 
 void getMatrixElements(int matrix[][10], int row, int column) {
-	printf("\nEnter elements: \n");
+	printf("\nElementuudee oruulna uu: \n");
 	
 	for (int i=0; i < row; ++i)
 		for (int j=0; j < column; ++j) {
-			printf("Enter matrix[%d]{%d]: ", i+1, j+1);
+			printf("matrix[%d]{%d]: ", i+1, j+1);
 			scanf("%d", &matrix[i][j]);
 		}
 }

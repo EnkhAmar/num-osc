@@ -19,13 +19,13 @@ void *checkPrime(void *vargp) {
     }
 
     if ((*num) == 1) {
-        printf("Neither prime nor composite: 1\n");
+        // printf("Neither prime nor composite: 1\n");
     } 
     else {
         if (flag == 0)
         printf("PRIME:     %d\n", *num);
-        else
-        printf("NOT PRIME: %d\n", *num);
+        // else
+        // printf("NOT PRIME: %d\n", *num);
     }   
     pthread_exit(NULL);
 }
