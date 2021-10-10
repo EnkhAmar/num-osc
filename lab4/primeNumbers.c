@@ -23,7 +23,7 @@ void *checkPrime(void *vargp) {
     } 
     else {
         if (flag == 0)
-        printf("PRIME:     %d\n", *num);
+            printf("PRIME:     %d\n", *num);
         // else
         // printf("NOT PRIME: %d\n", *num);
     }   
