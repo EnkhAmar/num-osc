@@ -25,7 +25,9 @@ int FirstInFirstOut(int referenceString[], int pages, int frames) {
     }
 }
 
-int LeastRecentlyUsed()
+int LeastRecentlyUsed() {
+    return 0;
+}
 
 int main()
 {

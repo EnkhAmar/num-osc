@@ -48,3 +48,84 @@ The approach can be best explained by the below reference string and the frame s
 - Step 4: As the queue is full, the page which is least recently used is popped.
 - Step 5: repeat step 4 until the page demand continues and until the processing is over.
 - Step 6: Terminate the program.
+
+
+
+Enter number of frames: 3
+Enter number of pages: 20
+Enter page reference string: 7 2 3 1 2 5 3 4 6 7 7 1 0 5 4 6 2 3 0 1
+
+
+FIFO:
+7       -1      -1
+7       2       -1
+7       2       3
+1       2       3
+1       2       3
+1       5       3
+1       5       3
+1       5       4
+6       5       4
+6       7       4
+6       7       4
+6       7       1
+0       7       1
+0       5       1
+0       5       4
+6       5       4
+6       2       4
+6       2       3
+0       2       3
+0       1       3
+Total Page Faults:      17
+
+
+
+LRU:
+7       -1      -1
+7       2       -1
+7       2       3
+1       2       3
+1       2       3
+1       5       3
+1       5       3
+1       5       4
+1       5       6
+1       5       7
+1       5       7
+1       5       7
+1       5       0
+1       5       0
+1       4       0
+1       6       0
+1       2       0
+1       3       0
+1       3       0
+1       3       0
+
+Total Page Faults = 13
+
+
+OPTIMAL:
+7       -1      -1
+7       2       -1
+7       2       3
+1       2       3
+1       2       3
+1       5       3
+1       5       3
+1       5       4
+1       5       6
+1       5       7
+1       5       7
+1       5       7
+1       5       0
+1       5       0
+1       4       0
+1       6       0
+1       2       0
+1       3       0
+1       3       0
+1       3       0
+
+Total Page Faults = 13
